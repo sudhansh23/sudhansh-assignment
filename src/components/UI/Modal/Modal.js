@@ -10,7 +10,7 @@ class Modal extends Component{
     render(){
         return(
             <React.Fragment>
-                <BackDrop show={this.props.show} clicked={this.props.modalClosed}/>
+                <BackDrop show={this.props.show}/>
                 <div 
                     className="Modal"
                     style={{

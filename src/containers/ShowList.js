@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import DisplayList from '../components/DisplayList/DisplayList';
-import Modal from '../components/UI/Modal/Modal';
 import ActivityModal from '../components/ActivityModal/ActivityModal';
+import './ShowList.css';
 
 
 class ShowList extends Component{
     state= {
         members: [],
-        openModal: false
+        openModal: false,
+        activityPeriod:''
     }
 
     componentDidMount(){
@@ -21,8 +22,10 @@ class ShowList extends Component{
             })
     }
 
-    openModal = () => {
-        this.setState({openModal: true})
+    openModal = (userActivity) => {
+        console.log(userActivity)
+        // const userActivePeriod = userActivity.filter(period => period.activityPeriods.id === memberId);
+        this.setState({openModal: true, activityPeriod: userActivity})
     }
 
     closeModal = () => {
@@ -30,24 +33,37 @@ class ShowList extends Component{
     }
 
     render(){
+        console.log(this.state.activityPeriod)
+        const activityPeriods = this.state.members.map(activityPeriod => {
+            return{
+                activityPeriods : {
+                    id: activityPeriod.id,
+                    activityPeriod: activityPeriod.activity_periods
+                }
+            }
+        })
+        console.log(activityPeriods);
+        
         return(
             <React.Fragment>
-                <div>Your list
+                <div className="container">
+                    <div className="ShowList">
+                    <span className="ListHead">List of People </span>
                     {this.state.members.map(member => {
                         return(
                             <DisplayList
-                            id= {member.id} 
+                            key= {member.id} 
+                            id={member.id}
                             name= {member.real_name}
                             tz= {member.tz} 
-                            openModal= {this.openModal}/>
+                            openModal= {()=> this.openModal(member.activity_periods)}/>
                         );
                     }
                     )}
+                    </div>
                 </div>
-                <Modal show={this.state.openModal}
-                    modalClosed={this.closeModal}>
-                        <ActivityModal close={this.closeModal} />
-               </Modal>
+                { this.state.openModal ? <ActivityModal closeModal={this.closeModal} openModal={this.state.openModal} activityPeriod={this.state.activityPeriod}/> : null}
+                
             </React.Fragment>
         );
     }
