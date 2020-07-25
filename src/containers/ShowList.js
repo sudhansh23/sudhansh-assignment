@@ -16,15 +16,12 @@ class ShowList extends Component{
 
         fetch(url)
             .then(response => response.json())
-            .then(data => { console.log(data)
+            .then(data => {
                 this.setState({ members: data.members})
-                console.log(this.state.members)
             })
     }
 
     openModal = (userActivity) => {
-        console.log(userActivity)
-        // const userActivePeriod = userActivity.filter(period => period.activityPeriods.id === memberId);
         this.setState({openModal: true, activityPeriod: userActivity})
     }
 
@@ -32,18 +29,10 @@ class ShowList extends Component{
         this.setState({openModal: false})
     }
 
+    openCalender = () => {
+    }
+
     render(){
-        console.log(this.state.activityPeriod)
-        const activityPeriods = this.state.members.map(activityPeriod => {
-            return{
-                activityPeriods : {
-                    id: activityPeriod.id,
-                    activityPeriod: activityPeriod.activity_periods
-                }
-            }
-        })
-        console.log(activityPeriods);
-        
         return(
             <React.Fragment>
                 <div className="container">
@@ -62,7 +51,13 @@ class ShowList extends Component{
                     )}
                     </div>
                 </div>
-                { this.state.openModal ? <ActivityModal closeModal={this.closeModal} openModal={this.state.openModal} activityPeriod={this.state.activityPeriod}/> : null}
+                { this.state.openModal ? 
+                    <ActivityModal 
+                        closeModal={this.closeModal} 
+                        openModal={this.state.openModal} 
+                        activityPeriod={this.state.activityPeriod}
+                        openCalender={this.openCalender}
+                    /> : null}
                 
             </React.Fragment>
         );

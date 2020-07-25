@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Modal from '../UI/Modal/Modal';
 import './ActivityModal.css';
 
 const ActivityModal = props => {
 
-    const timings = props.activityPeriod.map(time => {
+    const timings = props.activityPeriod.map((time, index) => {
         return(
-            <div class="list-group-item list-group-item-action">
+            <div key={index} className="list-group-item list-group-item-action">
                 <div>
                     Date: {time.start_time.substr(0, time.start_time.indexOf("2020")+4)}
                 </div>
@@ -22,8 +22,8 @@ const ActivityModal = props => {
                 <div>
                     {timings}
                     <div className="buttonLayout">
-                        <button type="button" class="btn btn-info" onClick={props.closeModal}>Close Modal</button>
-                        <button type="button" class="btn btn-link">View All</button>
+                        <button type="button" className="btn btn-info" onClick={props.closeModal}>Close Modal</button>
+                        <button type="button" className="btn btn-link" onClick={props.openCalender}>View All</button>
                     </div>
                 </div>
             </Modal>
