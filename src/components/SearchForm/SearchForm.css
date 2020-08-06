@@ -1,0 +1,31 @@
+.search-form{
+    margin-bottom: 20px;
+}
+
+.search-form input{
+    outline: none;
+    border: 1px solid;
+    width: 500px;
+    border-radius: 15px;
+    height: 50px;
+}
+
+.search-form input::placeholder{
+    padding-left: 10px;
+}
+
+.search-button{
+    border: none;
+    background: #3dd2cc;
+    margin-left: -15px;
+    height: 40px;
+    width: 30px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.search-button i::before{
+    font-size: 20px;
+    content: "\f002";
+    color: white;
+}
