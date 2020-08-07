@@ -6,7 +6,6 @@ import { Redirect, withRouter} from 'react-router-dom';
 class DisplayImageList extends Component{
 
     viewImage = (id, name, handlerName, image, profileImage, downloadImage) => {
-        console.log(name, handlerName, downloadImage)
         this.props.history.push("/viewimage", {id ,name, handlerName, image, profileImage, downloadImage});
     }
 

@@ -1,5 +1,5 @@
 Project Title
-  FullThrottle Assignment
+  Razorthink Assignment
 Getting Started
     One Can clone the repository from the give link: https://github.com/sudhansh23/sudhansh-assignment.git
 Prerequisites

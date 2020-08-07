@@ -16,9 +16,11 @@ class ShowList extends Component{
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 this.setState({ imgs: data, displayList: true})
             })
+			.catch(err => {
+				console.log('Error happened during fetching!', err);
+			});
     }
 
     performSearch = (query) => {
@@ -43,7 +45,6 @@ class ShowList extends Component{
                         <button className="load-more-button">Load More</button>
                     </div>
 				</div>
-                
             </React.Fragment>
         );
     }
